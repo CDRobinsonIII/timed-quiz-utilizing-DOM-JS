@@ -1,4 +1,8 @@
-.show {
-    display:block
+#quiz-questions {
+    visibility:hidden;
+}
+
+#quiz-over {
+    visibility:hidden;
 }
 
