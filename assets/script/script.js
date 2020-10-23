@@ -1,8 +1,9 @@
 // Find start quiz button and set a variable to it
 
 var startQuizBtn = document.querySelector("#quiz-start");
-// var clearScoreBtn = document.querySelector("#clear-scores");
+var clearScoreBtn = document.querySelector("#clear-scores");
 var submitInitialsBtn = document.querySelector("#submit-initials");
+var initialsHighScore = document.querySelector("#initials");
 var quizSection = document.querySelector("#quiz-home");
 var quizQuestion = document.querySelector("#quiz-questions");
 var quizOver = document.querySelector("#quiz-over");
@@ -30,36 +31,45 @@ questionPool = [{
     answerKey: "14"
 }];
 
-// console.log("clearScoreBtn :" + clearScoreBtn);
 
-// function clearHighScores () {
-//     alert("Somebody wants to clear the scores!");
-// }
+function clearHighScores () {
+    alert("Somebody wants to clear the scores!");
+}
 
 function startQuiz () {
     quizSection.style.display="none";
     quizQuestion.style.display="block";
     alert("Somebody wants to take the quiz!");
+    for (var i=1; i < questionPool.length+1; i++) {
+        alert("This is question # " + i + ": " + questionPool[i].questionTitle);
+    }
 }
 
 function addInitials () {
-    alert("Somebody wants to add their initials to the leaderboard!");
+    alert("This is what was entered in initial submit button: " +initialsHighScore.value);
+    console.log(initialsHighScore.value);
 }
-
-// clearScoreBtn.addEventListener("click", clearHighScores);
-    // When somebody wants to clear the scores:
-    // Clear score via local storage 
-
 submitInitialsBtn.addEventListener("click", addInitials);
+startQuizBtn.addEventListener("click", startQuiz);
+clearScoreBtn.addEventListener("click", clearHighScores);
+
+
+
+// submitInitialsBtn.addEventListener("click", addInitials);
     // When somebody wants to clear the scores:
     // Clear score via local storage 
+    
+// clearScoreBtn.addEventListener("click", clearHighScores);
+// When somebody wants to clear the scores:
+// Clear score via local storage
 
-startQuizBtn.addEventListener("click", startQuiz);
+// startQuizBtn.addEventListener("click", startQuiz);
     // When somebody needs to start the quiz:
     // Start timer
     // Hide start quiz-home div via id="quiz-home"
     // Show quiz-questions div via id="quiz-questions"
     // Track right or wrong and adjust time / score
+ 
 
 
 
