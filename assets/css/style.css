@@ -1,9 +1,9 @@
 #quiz-questions {
-    visibility:hidden;
+    display:none;
 }
 
 #quiz-over {
-    visibility:hidden;
+    display:none;
 }
 
 .top-color {

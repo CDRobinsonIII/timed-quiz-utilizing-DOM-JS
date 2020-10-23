@@ -7,6 +7,29 @@ var quizSection = document.querySelector("#quiz-home");
 var quizQuestion = document.querySelector("#quiz-questions");
 var quizOver = document.querySelector("#quiz-over");
 
+
+questionPool = [{
+    questionTitle:"What is 2+2?",
+    possibleAnswers: ["4","6","9","12"],
+    answerKey: "4"
+},{
+    questionTitle:"What is 4*4?",
+    possibleAnswers: ["4","12","16","24"],
+    answerKey: "16"
+},{
+    questionTitle:"What is 6/6?",
+    possibleAnswers: ["43","6","9","23"],
+    answerKey: "1"
+},{
+    questionTitle:"What is 8-8?",
+    possibleAnswers: ["0","6123","129","2"],
+    answerKey: "0"
+},{
+    questionTitle:"What is 2+3+4+5?",
+    possibleAnswers: ["412","16","14","152"],
+    answerKey: "14"
+}];
+
 // console.log("clearScoreBtn :" + clearScoreBtn);
 
 // function clearHighScores () {
@@ -14,8 +37,8 @@ var quizOver = document.querySelector("#quiz-over");
 // }
 
 function startQuiz () {
-    quizSection.style.visibility="hidden";
-    quizQuestion.style.visibility="visible";
+    quizSection.style.display="none";
+    quizQuestion.style.display="block";
     alert("Somebody wants to take the quiz!");
 }
 
@@ -37,6 +60,7 @@ startQuizBtn.addEventListener("click", startQuiz);
     // Hide start quiz-home div via id="quiz-home"
     // Show quiz-questions div via id="quiz-questions"
     // Track right or wrong and adjust time / score
+
 
 
 
