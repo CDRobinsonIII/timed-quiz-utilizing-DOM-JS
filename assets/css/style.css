@@ -6,3 +6,13 @@
     visibility:hidden;
 }
 
+.top-color {
+    background-color: aqua;
+}
+
+.container-fluid {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: aqua;
+}
+
