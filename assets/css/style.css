@@ -1,10 +1,30 @@
 #quiz-questions {
-    display:block;
+    display:none;
 }
 
 #quiz-over {
-    display:block;
+    display:none;
 }
+
+#rightOrWrong {
+    display:block;
+    /* font-weight: bold;
+    color: darkblue;
+    font-size: 32px; */
+}
+
+.rightAnswer {
+    font-weight: bold;
+    color: blue;
+    font-size: 32px;
+}
+
+.wrongAnswer {
+    font-weight: bold;
+    color: red;
+    font-size: 32px;
+}
+
 
 .top-color {
     background-color: aqua;
@@ -16,3 +36,7 @@
     background-color: aqua;
 }
 
+/* id to style the added buttons */
+#answer-choices {
+    width: auto;
+}
