@@ -28,10 +28,11 @@ var questionBank = document.querySelector("#quiz-holder");
 var finalScore = document.querySelector("#final-score");
 
 //Use DOM to grab initials entered at the completion of the quiz.
-var initialsEntered = document.querySelector("#initials");
+//Wasn't able to add High Score HTML.
+// var initialsEntered = document.querySelector("#initials");
 
-var initialsHighScore = [];
-var initialsScore = [];
+// var initialsHighScore = [];
+// var initialsScore = [];
 
 
 // Creat varaiable question pool for 5 questions, using an array of objects.
@@ -147,14 +148,15 @@ function checkAnswer (event) {
     // Clear right or wrong innerHTML for next question.
     rightOrWrongSection.innerHTML=" ";
 
-
     // check to see if there are anymore questions. If not, call the end quiz function.
     if (questionIndex === questionPool.length) {
             endQuiz ();
     }
-
-    // Display next question by calling the createQuestion function.
-    createQuestion ();
+   
+    else {
+        // Display next question by calling the createQuestion function.
+        createQuestion ();
+    }
 }
     
 function endQuiz () {
@@ -167,8 +169,10 @@ function endQuiz () {
 function addInitials (event) {
     event.preventDefault(event);
     window.location = "high_scores.html";
-    initialsEntered.push="initialsEntered.value";
-    initialsScore.push="score";
+
+    // Wasn't able to create high scores page. 
+    // initialsEntered.push="initialsEntered.value";
+    // initialsScore.push="score";
 }
 
 // Add event listener for when the user clicks on the start quiz button.
