@@ -1,5 +1,3 @@
-// Find start quiz button and set a variable to it
-
 // Use DOM to grab button to start the quiz to use with addEventListner
 var startQuizBtn = document.querySelector("#quiz-start");
 
@@ -27,6 +25,10 @@ var answerChoices = document.querySelector("#answer-choices");
 // Use DOM to grab area where we tell user if they got the answer right or wrong! 
 var rightOrWrongSection = document.querySelector("#rightOrWrong");
 
+// Use DOM to grab button where timer is displayed.
+var timerDisplay = document.querySelector("#timerTracker");
+
+
 // Creat varaiable question pool for 5 questions, using an array of objects.
 var questionPool = [{
     questionTitle:"What is 2+2?",
@@ -50,15 +52,47 @@ var questionPool = [{
     answerKey: "14"
 }];
 
+//Create time variable, timer variable to give user 60 seconds for quiz, and questionIndex to start at 0.
+var time = 60;
+var timer = 0;
+var questionIndex = 0;
+
 function startQuiz () {
+    // Hide the start the quiz section and show the quiz question section
     quizSection.style.display="none";
     quizQuestion.style.display="block";
-    displayQuestion.innerHTML = questionPool[1].questionTitle;
+
+    // Start the timer.
+    timer = setInterval(function() {
+
+        //Substract 1 second from the timer. 
+        time--;
+
+        //Show the updated time on timer section on the main page. 
+        timerDisplay.innerHTML = time;
+        console.log(timer);
+
+        // if (timer<=0) {
+        //     endQuiz();
+        // }
+    },1000);
+
+    //Call createQuestion function to display question.
+    createQuestion();
+}
+
+function createQuestion () {
     
-    // for Loop to display all 4 answer choices
+
+    // Display question title.
+    displayQuestion.innerHTML = questionPool[questionIndex].questionTitle;
+    
+    // for Loop to display all 4 answer choices.
     for (var i = 0; i < 4; i++) {
-        var choices = questionPool[1].possibleAnswers[i];
+        var choices = questionPool[questionIndex].possibleAnswers[i];
         console.log(choices);
+
+        //Create button to add the answer option to. 
         var btn = document.createElement("button");
         btn.textContent = choices;
         answerChoices.appendChild(btn).setAttribute("class", "p-3 m-1 btn btn-info btn-lg btn-block");
@@ -69,11 +103,10 @@ function startQuiz () {
             var theirAnswer = event.target.textContent;
             alert ("They picked answer :" + theirAnswer);
             console.log(theirAnswer);  
-            var correctAnswer = questionPool[1].answerKey;
+            var correctAnswer = questionPool[questionIndex].answerKey;
             console.log("The answer key is: " + correctAnswer);
         if (theirAnswer === correctAnswer) {
             rightOrWrongSection.setAttribute("class","rightAnswer");
-            // rightOrWrongSection.innerHTML= " ";
             rightOrWrongSection.innerHTML="You are CORRECT!";
         }
         else {
