@@ -106,9 +106,6 @@ function createQuestion() {
 
     //inject the markUp into #questionBank convert to html
     questionBank.innerHTML = questionMarkUp;
-
-    //Call the checkAnswer function to see if the user got the answer correct or wrong.
-    checkAnswer();
   }
 
 questionBank.addEventListener("click", function (event) {
@@ -122,9 +119,7 @@ questionBank.addEventListener("click", function (event) {
 function checkAnswer (event) {
 
     var theirAnswer = event.target.textContent;
-    alert("Their answer is: " + theirAnswer);
     var correctAnswer = questionPool[questionIndex].answerKey;
-    alert("The correct answer is: " + correctAnswer);
 
     if (theirAnswer === correctAnswer) {
         rightOrWrongSection.setAttribute("class","rightAnswer");
