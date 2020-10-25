@@ -122,8 +122,10 @@ questionBank.addEventListener("click", function (event) {
 function checkAnswer (event) {
 
     var theirAnswer = event.target.textContent;
+    alert("Their answer is: " + theirAnswer);
     var correctAnswer = questionPool[questionIndex].answerKey;
-    
+    alert("The correct answer is: " + correctAnswer);
+
     if (theirAnswer === correctAnswer) {
         rightOrWrongSection.setAttribute("class","rightAnswer");
 
@@ -141,7 +143,7 @@ function checkAnswer (event) {
          rightOrWrongSection.innerHTML="You are WRONG!";
 
         // Decrease time left by 5 seconds as penalty.
-        time = time -5;
+        time = time -10;
     }
     
     // Increase questionIndex counter to move on to the next question.
