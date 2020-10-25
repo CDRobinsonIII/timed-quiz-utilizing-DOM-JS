@@ -6,9 +6,6 @@ var startQuizBtn = document.querySelector("#quiz-start");
 // Use DOM to grab button used to submit initials to use with addEventListner
 var submitInitialsBtn = document.querySelector("#submit-initials");
 
-// Use DOM to grab initials that were entered at the end of the game. 
-var initialsHighScore = document.querySelector("#initials");
-
 // Use DOM to grab the quiz section of the index.html page, and use turn display on and off accordingly
 var quizSection = document.querySelector("#quiz-home");
 
@@ -16,13 +13,7 @@ var quizSection = document.querySelector("#quiz-home");
 var quizQuestion = document.querySelector("#quiz-questions");
 
 // Use DOM to grab the quiz over section of the index.html page, and use turn display on and off accordingly
-var quizOver = document.querySelector("#quiz-over");
-
-// Use DOM to grab area we will be displaying the question.
-var displayQuestion = document.querySelector("#quiz-question");
-
-// Use DOM to grab area we will be displaying the answers to choose from.
-var answerChoices = document.querySelector("#answer-choices");
+var quizOver = document.querySelector("#quiz-done");
 
 // Use DOM to grab area where we tell user if they got the answer right or wrong! 
 var rightOrWrongSection = document.querySelector("#rightOrWrong");
@@ -32,6 +23,9 @@ var timerDisplay = document.querySelector("#timerTracker");
 
 // Use DOM to grab area to insert question and answer choice via a template literal.
 var questionBank = document.querySelector("#quiz-holder");
+
+// Use DOM to grab area to put final score.
+var finalScore = document.querySelector("#final-score");
 
 
 // Creat varaiable question pool for 5 questions, using an array of objects.
@@ -58,7 +52,7 @@ var questionPool = [{
 }];
 
 //Create time variable, timer variable to give user 60 seconds for quiz, score variable, and questionIndex to start at 0.
-var time = 60;
+var time = 20;
 var timer = 0;
 var questionIndex = 0;
 var score = 0;
@@ -79,9 +73,9 @@ function startQuiz () {
         timerDisplay.innerHTML = time;
         console.log(timer);
 
-        // if (timer<=0) {
-        //     endQuiz();
-        // }
+        if (time<=0) {
+            endQuiz();
+        }
     },1000);
 
     //Call createQuestion function to display question.
@@ -147,15 +141,15 @@ function checkAnswer (event) {
     
     // Increase questionIndex counter to move on to the next question.
     questionIndex++;
-    console.log("Question coming up is #: " +(questionIndex+1));
+    console.log("Question coming up is #: " +(questionIndex));
     console.log("You're score is: " + score);
       
-    //Clear right or wrong innerHTML for next question.
-    // rightOrWrongSection.innerHTML=" ";
+    // Clear right or wrong innerHTML for next question.
+    rightOrWrongSection.innerHTML=" ";
 
 
     // check to see if there are anymore questions. If not, call the end quiz function.
-    if (questionIndex === questionIndex.length) {
+    if (questionIndex === questionPool.length) {
             endQuiz ();
     }
 
@@ -163,21 +157,21 @@ function checkAnswer (event) {
     createQuestion ();
 }
     
-
-
-function addInitials () {
-    alert("This is what was entered in initial submit button: " +initialsHighScore.value);
-    console.log(initialsHighScore.value);
+function endQuiz () {
+    clearInterval(timer);
+    quizQuestion.style.display="none";
+    quizOver.style.display="block";
+    finalScore.innerHTML = score;
 }
 
-submitInitialsBtn.addEventListener("click", addInitials);
-    // When some enters initials and clicks submit
-    // Add to high scores array
-    // High scores should be stored in local storage
+function addInitials (event) {
+    event.preventDefault(event);
+    window.location = "high_scores.html";
 
+}
+
+// Add event listener for when the user clicks on the start quiz button.
 startQuizBtn.addEventListener("click", startQuiz);
-    // When somebody needs to start the quiz:
-    // Start timer
-    // Hide start quiz-home div via id="quiz-home"
-    // Show quiz-questions div via id="quiz-questions"
-    // Track right or wrong and adjust time score
+
+// Add event listener for when the user clicks the submit button to add their initials.
+submitInitialsBtn.addEventListener("click", addInitials);
