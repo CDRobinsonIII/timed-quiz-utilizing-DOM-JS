@@ -1,3 +1,5 @@
+/*jshint esversion: 6 */ 
+
 // Use DOM to grab button to start the quiz to use with addEventListner
 var startQuizBtn = document.querySelector("#quiz-start");
 
@@ -28,6 +30,9 @@ var rightOrWrongSection = document.querySelector("#rightOrWrong");
 // Use DOM to grab button where timer is displayed.
 var timerDisplay = document.querySelector("#timerTracker");
 
+// Use DOM to grab area to insert question and answer choice via a template literal.
+var questionBank = document.querySelector("#quiz-holder");
+
 
 // Creat varaiable question pool for 5 questions, using an array of objects.
 var questionPool = [{
@@ -40,7 +45,7 @@ var questionPool = [{
     answerKey: "16"
 },{
     questionTitle:"What is 6/6?",
-    possibleAnswers: ["43","6","9","23"],
+    possibleAnswers: ["43","1","9","23"],
     answerKey: "1"
 },{
     questionTitle:"What is 8-8?",
@@ -52,11 +57,13 @@ var questionPool = [{
     answerKey: "14"
 }];
 
-//Create time variable, timer variable to give user 60 seconds for quiz, and questionIndex to start at 0.
+//Create time variable, timer variable to give user 60 seconds for quiz, score variable, and questionIndex to start at 0.
 var time = 60;
 var timer = 0;
 var questionIndex = 0;
+var score = 0;
 
+// Start quiz function that is called after the start quiz button is clicked on. 
 function startQuiz () {
     // Hide the start the quiz section and show the quiz question section
     quizSection.style.display="none";
@@ -81,42 +88,82 @@ function startQuiz () {
     createQuestion();
 }
 
-function createQuestion () {
+
+function createQuestion() {
+
+    //create question markUp in var
+    var questionMarkUp = `
+     
+    <h2 id="quiz-question">${questionPool[questionIndex].questionTitle}</h2>
+    <div id ="answer-options">
+        <div id="answer-choices">
+            <button type="button" class= "p-3 m-1 btn btn-info btn-lg btn-block">${questionPool[questionIndex].possibleAnswers[0]}</button>
+            <button type="button" class= "p-3 m-1 btn btn-info btn-lg btn-block">${questionPool[questionIndex].possibleAnswers[1]}</button>
+            <button type="button" class= "p-3 m-1 btn btn-info btn-lg btn-block">${questionPool[questionIndex].possibleAnswers[2]}</button>
+            <button type="button" class= "p-3 m-1 btn btn-info btn-lg btn-block">${questionPool[questionIndex].possibleAnswers[3]}</button>
+        </div>
+    </div>
+    `;
+
+    //inject the markUp into #questionBank convert to html
+    questionBank.innerHTML = questionMarkUp;
+
+    //Call the checkAnswer function to see if the user got the answer correct or wrong.
+    checkAnswer();
+  }
+
+questionBank.addEventListener("click", function (event) {
+    if (event.target.matches("button")) {
+        checkAnswer(event);
+    }
+});
+
+
+function checkAnswer (event) {
+
+    var theirAnswer = event.target.textContent;
+    var correctAnswer = questionPool[questionIndex].answerKey;
+    console.log("Somebody clicked the button");
     
+    if (theirAnswer === correctAnswer) {
+        rightOrWrongSection.setAttribute("class","rightAnswer");
 
-    // Display question title.
-    displayQuestion.innerHTML = questionPool[questionIndex].questionTitle;
-    
-    // for Loop to display all 4 answer choices.
-    for (var i = 0; i < 4; i++) {
-        var choices = questionPool[questionIndex].possibleAnswers[i];
-        console.log(choices);
+        // Let them know that they picked the correct answer.
+        rightOrWrongSection.innerHTML="You are CORRECT!";
 
-        //Create button to add the answer option to. 
-        var btn = document.createElement("button");
-        btn.textContent = choices;
-        answerChoices.appendChild(btn).setAttribute("class", "p-3 m-1 btn btn-info btn-lg btn-block");
-    }     
-
-    answerChoices.addEventListener("click", function (event) {
-        if (event.target.matches("button")) {
-            var theirAnswer = event.target.textContent;
-            alert ("They picked answer :" + theirAnswer);
-            console.log(theirAnswer);  
-            var correctAnswer = questionPool[questionIndex].answerKey;
-            console.log("The answer key is: " + correctAnswer);
-        if (theirAnswer === correctAnswer) {
-            rightOrWrongSection.setAttribute("class","rightAnswer");
-            rightOrWrongSection.innerHTML="You are CORRECT!";
+        // Add 100 to their score.
+        score=score+100;
         }
-        else {
+    
+    else {
         rightOrWrongSection.setAttribute("class","wrongAnswer");
-        rightOrWrongSection.innerHTML="You are WRONG!";
-        }
-    } 
-    });
 
+        // Let them know they picked the wrong answer.
+         rightOrWrongSection.innerHTML="You are WRONG!";
+
+        // Decrease time left by 5 seconds as penalty.
+        time = time -5;
+    }
+    
+    // Increase questionIndex counter to move on to the next question.
+    questionIndex++;
+    console.log("Question coming up is #: " +(questionIndex+1));
+    console.log("You're score is: " + score);
+      
+    //Clear right or wrong innerHTML for next question.
+    // rightOrWrongSection.innerHTML=" ";
+
+
+    // check to see if there are anymore questions. If not, call the end quiz function.
+    if (questionIndex === questionIndex.length) {
+            endQuiz ();
+    }
+
+    // Display next question by calling the createQuestion function.
+    createQuestion ();
 }
+    
+
 
 function addInitials () {
     alert("This is what was entered in initial submit button: " +initialsHighScore.value);
