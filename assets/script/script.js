@@ -27,32 +27,38 @@ var questionBank = document.querySelector("#quiz-holder");
 // Use DOM to grab area to put final score.
 var finalScore = document.querySelector("#final-score");
 
+//Use DOM to grab initials entered at the completion of the quiz.
+var initialsEntered = document.querySelector("#initials");
+
+var initialsHighScore = [];
+var initialsScore = [];
+
 
 // Creat varaiable question pool for 5 questions, using an array of objects.
 var questionPool = [{
-    questionTitle:"What is 2+2?",
-    possibleAnswers: ["4","6","9","12"],
-    answerKey: "4"
+    questionTitle:"What variable scope covers the whole JavaScript file?",
+    possibleAnswers: ["Local","Global","Block","Function"],
+    answerKey: "Global"
 },{
-    questionTitle:"What is 4*4?",
-    possibleAnswers: ["4","12","16","24"],
-    answerKey: "16"
+    questionTitle:"What does is DOM short for in JavaScript?",
+    possibleAnswers: ["Dominic","Document Object Model","Dominican republic","Dom Perignon"],
+    answerKey: "Document Object Model"
 },{
-    questionTitle:"What is 6/6?",
-    possibleAnswers: ["43","1","9","23"],
-    answerKey: "1"
+    questionTitle:"What is another word for regular old JavaScript?",
+    possibleAnswers: ["Chocolate","Old Technology","Vanilla","Complicated Coding"],
+    answerKey: "Vanilla"
 },{
-    questionTitle:"What is 8-8?",
-    possibleAnswers: ["0","6123","129","2"],
-    answerKey: "0"
+    questionTitle:"What do you call a function inside of a function?",
+    possibleAnswers: ["Ridiculous","Unnecessary","A Nested Function","Unheard Of"],
+    answerKey: "A Nested Function"
 },{
-    questionTitle:"What is 2+3+4+5?",
-    possibleAnswers: ["412","16","14","152"],
-    answerKey: "14"
+    questionTitle:"What is better than coding in JavaScript",
+    possibleAnswers: ["Everything","jQuery","Sleeping","Eating"],
+    answerKey: "jQuery"
 }];
 
 //Create time variable, timer variable to give user 60 seconds for quiz, score variable, and questionIndex to start at 0.
-var time = 20;
+var time = 60;
 var timer = 0;
 var questionIndex = 0;
 var score = 0;
@@ -71,7 +77,6 @@ function startQuiz () {
 
         //Show the updated time on timer section on the main page. 
         timerDisplay.innerHTML = time;
-        console.log(timer);
 
         if (time<=0) {
             endQuiz();
@@ -107,6 +112,7 @@ function createQuestion() {
   }
 
 questionBank.addEventListener("click", function (event) {
+    event.preventDefault();
     if (event.target.matches("button")) {
         checkAnswer(event);
     }
@@ -117,7 +123,6 @@ function checkAnswer (event) {
 
     var theirAnswer = event.target.textContent;
     var correctAnswer = questionPool[questionIndex].answerKey;
-    console.log("Somebody clicked the button");
     
     if (theirAnswer === correctAnswer) {
         rightOrWrongSection.setAttribute("class","rightAnswer");
@@ -141,8 +146,6 @@ function checkAnswer (event) {
     
     // Increase questionIndex counter to move on to the next question.
     questionIndex++;
-    console.log("Question coming up is #: " +(questionIndex));
-    console.log("You're score is: " + score);
       
     // Clear right or wrong innerHTML for next question.
     rightOrWrongSection.innerHTML=" ";
@@ -167,7 +170,8 @@ function endQuiz () {
 function addInitials (event) {
     event.preventDefault(event);
     window.location = "high_scores.html";
-
+    initialsEntered.push="initialsEntered.value";
+    initialsScore.push="score";
 }
 
 // Add event listener for when the user clicks on the start quiz button.
