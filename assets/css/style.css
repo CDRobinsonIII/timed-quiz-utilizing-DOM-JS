@@ -1,3 +1,7 @@
+html, .container, .container-fluid, body {
+    background-color: aqua;
+}
+
 #quiz-questions {
     display:none;
 }
@@ -29,17 +33,6 @@
     font-weight: bold;
     color: red;
     font-size: 32px;
-}
-
-
-.top-color {
-    background-color: aqua;
-}
-
-.container-fluid {
-    min-width: 100vw;
-    min-height: 100vh;
-    background-color: aqua;
 }
 
 /* id to style the added buttons */
