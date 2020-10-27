@@ -1,19 +1,19 @@
 # timed-quiz-utilizing-DOM-JS
 
 ## Description
-For this project I created an timed quiz application.
-The index.html page was created from scratch and had 4 different sections: 
+For this project I created a timed quiz application.
+The index.html and script.js pages were created from scratch. The index.html page had 4 different sections the were manipulated by the JavaScript: 
     <ol>
         <li>The first section was the start screen for the quiz. Once you clicked on the start quiz button it would take you to the quiz section.</li>
-        <li>The second section was the quiz section with the questions. The quiz consisted of 5 questions and you had 60 seconds to answer them. If you got a question wrong your time was decremented by 5 seconds. If you got a question right your score increased by 100 points.</li>
+        <li>The second section was the quiz section with the questions and answer choices. The quiz consisted of 5 questions and you had 60 seconds to answer them. If you got a question wrong your time was decremented by 10 seconds. If you got a question right your score increased by 100 points.</li>
         <li>The third section was the end of quiz screen which showed your final score. Here you would entered you initials so that you could be added to the high score page.</li>
-        <li>The fourth section was the high score section which show the high score. Here you could clear the high score from the local storage.</li>
+        <li>The fourth section was the high score section which shows the high scores. Here you could clear the high scores from the local storage.</li>
     </ol>
     
 This was accomplished by: 
     <ul>
         <li>Using JavaScript to manipulate the DOM of the index.HTML. The JavaScript has variables using document.QuerySelector for ids.</li>
-        <li>Using addEventListeners for the start button, the submit initials button, the view high score button, the clear high scores button.</li>
+        <li>Using addEventListeners for the start quiz button, the submit initials button, the view high score button, the clear high scores button.</li>
         <li>Using functions to:</li>
         <li>To start the quiz.</li>
         <li>To generate the questions and answer choices.</li>
