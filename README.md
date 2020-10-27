@@ -3,11 +3,13 @@
 ## Description
 For this project I created an timed quiz application.
 The index.html page was created from scratch and had 4 different sections: 
-    1) The first section was the start screen for the quiz. Once you clicked on the start quiz button it would take you to the quiz section.
-    2) The second section was the quiz section with the questions. The quiz consisted of 5 questions and you had 60 seconds to answer them. If you got a question wrong your time was decremented by 5 seconds. If you got a question right your score increased by 100 points. 
-    3) The third section was the end of quiz screen which showed your final score. Here you would entered you initials so that you could be added to the high score page.
-    4) The fourth section was the high score section which show the high score. Here you could clear the high score from the local storage. 
-
+    <ol>
+        <li>The first section was the start screen for the quiz. Once you clicked on the start quiz button it would take you to the quiz section.</li>
+        <li>The second section was the quiz section with the questions. The quiz consisted of 5 questions and you had 60 seconds to answer them. If you got a question wrong your time was decremented by 5 seconds. If you got a question right your score increased by 100 points.</li>
+        <li>The third section was the end of quiz screen which showed your final score. Here you would entered you initials so that you could be added to the high score page.</li>
+        <li>The fourth section was the high score section which show the high score. Here you could clear the high score from the local storage.</li>
+    </ol>
+    
 This was accomplished by: 
     <ul>
         <li>Using JavaScript to manipulate the DOM of the index.HTML. The JavaScript has variables using document.QuerySelector for ids.</li>
