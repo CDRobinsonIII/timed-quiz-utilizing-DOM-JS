@@ -2,6 +2,20 @@ html, .container, .container-fluid, body {
     background-color: aqua;
 }
 
+#high-score-list {
+    font-weight: bold;
+    color:black; 
+    font-size: 32px;
+}
+
+#highScoreViewer {
+    display:none;
+}
+
+#navViewer {
+    display:block;
+}
+
 #quiz-questions {
     display:none;
 }

@@ -11,19 +11,21 @@
 
 <body>
 
-    <nav class ="container-fluid">
+    <!-- Nav seciton with a view high score button on the left and timer on the right. -->
+    <nav class ="container-fluid" id="navViewer">
         <div class = "row justify-content-between">
-            <div class="col-xlg-6">
-                <a class="btn btn-success" href="high_scores.html" role="button">View High Scores</a>
+            <div class="col-xlg-6 p-3">
+                <button class="btn btn-success" id="view-highScores">View High Scores</button>
             </div>    
-            <div class="col-xlg-6">
+            <div class="col-xlg-6 p-3">
                 <button class="btn btn-warning pull-right" type="button">Time Left: <span id="timerTracker">60</span></button>
             </div>   
         </div>
     </nav>
 
     <section class ="container">
-
+        
+        <!-- Quiz annoucement section with scoring quidelines. To be visible upon starting webpage. -->
         <div class="container" id="quiz-home">
             <div class ="row">
                 <div class="col-lg-12 mt-5 p-3 text-center">
@@ -43,6 +45,7 @@
             </div>
         </div>
 
+        <!-- Quiz question and answer section. To be visible after you click the start button.-->
         <div class="container text-center" id="quiz-questions">
             <div class= "row">
                 <div class="col-lg-12 mt-5 p-3" id="quiz-holder"></div>
@@ -54,6 +57,7 @@
             </div>
         </div>
 
+        <!-- Quiz is done section. To be visible after you answer your last question or the timer runs out. Enter initials here. -->
         <div class="container text-center" id="quiz-done">
             <div class= "row">
                 <div class="col-lg-12 mt-5 p-3">
@@ -70,7 +74,31 @@
             </div>   
         </div>
 
+        <!-- High score section here. I choose to keep it on the index.html page for ease of coding the JavaScript and for SEO reasons, less pages! -->
+        <section class = "container-fluid" id="highScoreViewer">
+            <div class = "row text-center">
+                <div class="col-lg-12 mt-5 p-2">
+                    <h1>High Scores Leaderboard</h1>
+                </div>  
+            </div>
+            <div class = "row text-left justify-content-center ">
+                <div class="col-xlg-12 mt-5 p-2">
+                    <ol id="high-score-list">
+                    </ol>
+                </div>  
+            </div>
+            <div class = "row justify-content-center">
+                <div class="col-xlg-6 mt-5 p-2">
+                    <a class="btn btn-primary" href="index.html" role="button">Take Quiz Again!</a>
+                </div>  
+                <div class="col-xlg-6 mt-5 p-2">
+                    <input class="btn btn-danger" type="submit" value="Clear High Scores!" id="clear-scores">
+                </div>
+            </div>
+        </section>
+         
     </section>
-    <script src="./assets/script/script.js"></script>
+
+    <script src="./assets/script/script.js" type="text/javascript" async></script>
 </body>
 </html>
